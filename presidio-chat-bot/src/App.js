@@ -40,7 +40,7 @@ function App() {
 
     try {
       // const response = await axios.post('/chat', { message: userMessage });
-      const response = await axios.post('/chat', { message: userMessage }, { withCredentials: true });
+      const response = await axios.post('https://presidio.azurewebsites.net/chat', { message: userMessage }, { withCredentials: true });
 
 
       // Add user message and chatbot reply to the chat history
