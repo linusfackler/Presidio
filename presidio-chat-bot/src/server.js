@@ -17,6 +17,7 @@ app.use(express.json());
 console.log(process.env.OPENAI_API_KEY)
 console.log(process.env.REACT_APP_API_URL)
 
+
 // Handle root GET request
 app.get('/', (req, res) => {
   res.send('Welcome to the chatbot backend!');
