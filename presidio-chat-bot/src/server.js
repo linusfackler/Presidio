@@ -1,6 +1,5 @@
 const express = require('express');
 const { Configuration, OpenAIApi } = require("openai");
-require('dotenv').config()
 
 const app = express();
 const port = 3001;
