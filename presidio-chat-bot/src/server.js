@@ -1,7 +1,7 @@
 const express = require('express');
 const { Configuration, OpenAIApi } = require("openai");
 require('dotenv').config()
-
+const cors = require('cors');
 const app = express();
 const port = 3001;
 
@@ -13,7 +13,7 @@ const openai = new OpenAIApi(configuration);
 
 // Enable JSON body parsing
 app.use(express.json());
-
+app.use(cors())
 
 // Handle root GET request
 app.get('/', (req, res) => {

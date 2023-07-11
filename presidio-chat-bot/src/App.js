@@ -33,13 +33,15 @@ function App() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (userMessage == "") {
+    if (userMessage === "") {
       alert("Can't leave the textfield blank.")
       return
     }
 
     try {
-      const response = await axios.post(process.env.REACT_APP_API_URL + '/chat', { message: userMessage });
+      // const response = await axios.post('/chat', { message: userMessage });
+      const response = await axios.post('https://presidio.azurewebsites.net/chat', { message: userMessage });
+
 
       // Add user message and chatbot reply to the chat history
       const newChatEntry = {
@@ -62,7 +64,6 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {/* {theme === "dark" ? <BG /> : <></>}   */}
 
       <div id={theme} className={theme}>
         <h1>WishGPT</h1>
