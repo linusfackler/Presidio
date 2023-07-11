@@ -16,9 +16,11 @@ app.options('*', cors()) // preflight request. reply successfully:
 
 app.use(cors({
   origin: 'https://linusfackler.github.io',
-  methods: ['GET', 'POST', 'OPTIONS'], 
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'], // You can add more headers here
   credentials: true
 }));
+
 
 
 // Enable JSON body parsing
