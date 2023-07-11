@@ -39,7 +39,7 @@ function App() {
     }
 
     try {
-      const response = await axios.post('/chat', { message: userMessage });
+      const response = await axios.post(process.env.REACT_APP_API_URL + '/chat', { message: userMessage });
 
       // Add user message and chatbot reply to the chat history
       const newChatEntry = {
