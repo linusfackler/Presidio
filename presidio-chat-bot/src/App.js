@@ -4,7 +4,6 @@ import ReactSwitch from "react-switch"
 import {MdNightlightRound} from 'react-icons/md'
 import {BsSunFill} from 'react-icons/bs'
 import './App.css'
-// import BG from './BG'
 
 export const ThemeContext = createContext(null);
 
