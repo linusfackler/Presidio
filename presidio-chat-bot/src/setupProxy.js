@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     '/chat',
     createProxyMiddleware({
-      target: 'http://localhost:3001',
+      target: process.env.REACT_APP_API_URL,
       changeOrigin: true,
     })
   );
