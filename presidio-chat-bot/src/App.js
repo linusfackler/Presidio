@@ -1,8 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { createContext, useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import ReactSwitch from "react-switch"
+import {MdNightlightRound} from 'react-icons/md'
+import {BsSunFill} from 'react-icons/bs'
+import './App.css'
+// import BG from './BG'
+
+export const ThemeContext = createContext(null);
 
 
 function App() {
+  const[theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
+
   const [userMessage, setUserMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const chatContainerRef = useRef(null);
@@ -11,8 +24,20 @@ function App() {
     setUserMessage(event.target.value);
   };
 
+    const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleSubmit();
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (userMessage == "") {
+      alert("Can't leave the textfield blank.")
+      return
+    }
 
     try {
       const response = await axios.post('/chat', { message: userMessage });
@@ -37,26 +62,50 @@ function App() {
   }, [chatHistory]);
 
   return (
-    <div className="App">
-      <h1>ChatGPT from wish.com</h1>
-      <div ref={chatContainerRef} className="ChatContainer">
-        {chatHistory.map((chatEntry, index) => (
-          <div key={index} className="ChatEntry">
-            <p>User: {chatEntry.userMessage}</p>
-            <p>Bot: {chatEntry.botMessage}</p>
-          </div>
-        ))}
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {/* {theme === "dark" ? <BG /> : <></>}   */}
+
+      <div id={theme} className={theme}>
+        <h1>WishGPT</h1>
+        <h2>ChatGPT, but from wish.com</h2>
+
+        <ReactSwitch className="switch"
+            onChange={toggleTheme}
+            checked={theme === "dark"}
+            onColor="#000e40"
+            offColor="ffd000"
+            checkedIcon={<MdNightlightRound className='switch__icon-night' />}
+            uncheckedIcon={<BsSunFill className='switch__icon-day' />}
+            borderRadius='5px'
+          />
+
+        <div ref={chatContainerRef} className="ChatContainer">
+          <p>Welcome to WishGPT! Ask me anything!</p>
+          {chatHistory.map((chatEntry, index) => (
+            <div key={index} className="ChatEntry">
+              <div className="UserEntry">
+                <p className="UserLabel">User:&nbsp;</p>
+                <p className="UserMessage">{chatEntry.userMessage}</p>
+              </div>
+              <div className="BotEntry">
+                <p className="BotLabel">Bot:&nbsp;</p>
+                <p className="BotMessage">{chatEntry.botMessage}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Type your message"
+            value={userMessage}
+            onChange={handleMessageChange}
+            className='textfield'
+          />
+          <button type="submit" className='btn'>Send</button>
+        </form>
       </div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Type your message"
-          value={userMessage}
-          onChange={handleMessageChange}
-        />
-        <button type="submit">Send</button>
-      </form>
-    </div>
+    </ThemeContext.Provider>
   );
 }
 
