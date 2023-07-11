@@ -1,7 +1,7 @@
 const express = require('express');
+const cors = require('cors');
 const { Configuration, OpenAIApi } = require("openai");
 require('dotenv').config()
-const cors = require('cors');
 const app = express();
 const port = 3001;
 
@@ -11,9 +11,18 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+// enable CORS for all routes
+app.options('*', cors()) // preflight request. reply successfully:
+
+app.use(cors({
+  origin: 'https://linusfackler.github.io',
+  methods: ['GET', 'POST', 'OPTIONS'], 
+  credentials: true
+}));
+
+
 // Enable JSON body parsing
 app.use(express.json());
-app.use(cors())
 
 // Handle root GET request
 app.get('/', (req, res) => {
