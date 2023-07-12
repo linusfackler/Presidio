@@ -12,11 +12,17 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const corsOptions = {
-  origin: 'https://linusfackler.github.io',
+  origin: '*',
   credentials: true,
 };
 
 app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://linusfackler.github.io');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 // app.use(cors())
 
