@@ -11,17 +11,14 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-// enable CORS for all routes
-app.options('*', cors()) // preflight request. reply successfully:
+const cors = require('cors');
 
-app.use(cors({
+const corsOptions = {
   origin: 'https://linusfackler.github.io',
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'], // You can add more headers here
-  credentials: true
-}));
+  credentials: true, // <-- REQUIRED backend setting
+};
 
-
+app.use(cors(corsOptions));
 
 // Enable JSON body parsing
 app.use(express.json());
