@@ -12,7 +12,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const corsOptions = {
-  origin: '*',
+  origin: 'https://linusfackler.github.io',
   credentials: true,
 };
 
