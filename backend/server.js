@@ -20,11 +20,11 @@ app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://linusfackler.github.io');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
 });
-
-// app.use(cors())
 
 // Enable JSON body parsing
 app.use(express.json());
