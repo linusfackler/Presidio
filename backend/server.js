@@ -34,7 +34,6 @@ app.use((req, res, next) => {
   }
 });
 
-
 // Enable JSON body parsing
 app.use(express.json());
 
