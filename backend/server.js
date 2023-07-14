@@ -12,26 +12,19 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    const whitelist = ['https://linusfackler.github.io', 'http://localhost:3000'];
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: 'https://linusfackler.github.io',
   credentials: true,
 };
 
 app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
-  if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.send();
-  } else {
-    next();
-  }
+  // res.setHeader('Access-Control-Allow-Origin', 'https://linusfackler.github.io');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
 });
 
 // Enable JSON body parsing
