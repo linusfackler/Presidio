@@ -11,24 +11,6 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-// const corsOptions = {
-//   // origin: 'https://linusfackler.github.io',
-//   origin: 'http://localhost:3000',
-//   credentials: true,
-//   optionSuccessStatus:200
-// };
-
-// app.use(cors(corsOptions));
-
-// app.use((req, res, next) => {
-//   // res.setHeader('Access-Control-Allow-Origin', 'https://linusfackler.github.io');
-//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-//   res.setHeader('Access-Control-Allow-Credentials', 'true');
-//   next();
-// });
-
 app.use(cors())
 
 // Enable JSON body parsing
@@ -59,4 +41,3 @@ app.post('/chat', async (req, res) => {
 app.listen(process.env.PORT || port, () => {
   console.log(`Server running on port ${process.env.PORT || port}`);
 });
-

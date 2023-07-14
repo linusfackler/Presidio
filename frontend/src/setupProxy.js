@@ -5,7 +5,6 @@ module.exports = function (app) {
     '/chat',
     createProxyMiddleware({
       target: 'http://presidio.azurewebsites.net',
-      // target: 'http://localhost:3001',
       changeOrigin: true,
     })
   );

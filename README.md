@@ -1,16 +1,18 @@
 # WishGPT - Presidio coding challenge
 
-Like ChatGPT if it was from wish.com
+Like ChatGPT if it was from wish.com.
 
-For some reason, the Azure backend is baking problems, but the Python script version works perfectly.
+It uses the OpenAI GPT3.5 API. The backend is hosted through an Azure Webapp.
+The frontend was created using the React library.
 
 ## How to run it
 
+### Web Version
+Open [this link](https://linusfackler.github.io/Presidio/) and ask anything.
+(There is also a dark mode)
+
 ### Python
+You need to have python3 installed, and might need to install some packages before being able to run it.
 ```
 python3 main.py
 ```
-
-### Web Version
-Open [this link](https://linusfackler.github.io/Presidio/) and type anything in the chat box.
-(There is also a dark mode)

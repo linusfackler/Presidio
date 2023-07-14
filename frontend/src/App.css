@@ -8,16 +8,18 @@ html, body, #root, .App {
   padding: 0;
 }
 
+/* If dark mode is selected */
 .dark {
-  background-color: #000; /* black */
-  color: #fff; /* white text */
-  height: 100vh; /* cover full viewport height */
+  background-color: #202020;
+  color: #fff;
+  height: 100vh;
 }
 
+/* If light mode is selected */
 .light {
-  background-color: #fff; /* white */
-  color: #000; /* black text */
-  height: 100vh; /* cover full viewport height */
+  background-color: #fff;
+  color: #000;
+  height: 100vh;
 }
 
 #light body {
@@ -48,23 +50,25 @@ h1 {
   border: 1px solid white;
 }
 
+.UserEntry,
+.BotEntry {
+  display: grid;
+  grid-template-columns: 0.01fr 1fr;
+  gap: 0;
+}
+
 .UserLabel,
 .BotLabel {
   font-weight: bold;
   margin-right: 8px;
   width: 3rem;
-}
-
-.UserEntry,
-.BotEntry {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  align-self: start;
 }
 
 .UserMessage,
 .BotMessage {
   margin: 0;
+  align-items: end;
 }
 
 form {
@@ -76,7 +80,7 @@ form {
 .textfield {
   flex: 1;
   display: inline-block;
-  color: darkblue;
+  color: black;
   padding: 0.75rem 1.2rem;
   border-radius: 0.4rem;
   cursor: pointer;
@@ -97,6 +101,7 @@ form {
 
 #dark .textfield {
   border: 1px solid white;
+  color: white;
 }
 
 .btn {

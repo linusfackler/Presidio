@@ -10,14 +10,16 @@ export const ThemeContext = createContext(null);
 function App() {
   const[theme, setTheme] = useState("light");
 
+  // if the user switches themes
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
   };
 
-  const [userMessage, setUserMessage] = useState('');
-  const [chatHistory, setChatHistory] = useState([]);
+  const [userMessage, setUserMessage] = useState('');   // message that the user types into the chatbox
+  const [chatHistory, setChatHistory] = useState([]);   // saves the chat history - displays them all downwards
   const chatContainerRef = useRef(null);
 
+  // changes userMessage once user types into chatbox
   const handleMessageChange = (event) => {
     setUserMessage(event.target.value);
   };
@@ -29,17 +31,19 @@ function App() {
     }
   };
 
+  // sends request
   const handleSendMessage = async (event) => {
     event.preventDefault();
 
+    // if textbox is empty
     if (userMessage.trim() === "") {
       alert("Can't leave the textfield blank.")
       return
     }
 
     try {
-      // const response = await axios.post('/chat', { message: userMessage });
-      const response = await axios.post('https://presidio.azurewebsites.net/chat', { message: userMessage }, { withCredentials: true });
+      // API call
+      const response = await axios.post('https://presidio.azurewebsites.net/chat', { message: userMessage }, { withCredentials: false });
 
 
       // Add user message and chatbot reply to the chat history
