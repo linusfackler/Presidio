@@ -12,8 +12,10 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const corsOptions = {
-  origin: 'https://linusfackler.github.io',
+  // origin: 'https://linusfackler.github.io',
+  origin: 'http://localhost:3000',
   credentials: true,
+  optionSuccessStatus:200
 };
 
 app.use(cors(corsOptions));
